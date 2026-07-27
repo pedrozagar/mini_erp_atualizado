@@ -13,7 +13,8 @@ class Database:
             port =      os.getenv("DB_PORT"),
             database =  os.getenv("DB_NAME"),
             user =      os.getenv("DB_USER"),
-            password =  os.getenv("DB_PASSWORD")
+            password =  os.getenv("DB_PASSWORD"),
+            use_pure = True
         )
     def desconectar(self, cursor=None, conexao=None):
         if cursor:
