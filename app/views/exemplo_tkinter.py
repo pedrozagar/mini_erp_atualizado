@@ -1,4 +1,4 @@
-#isso aqui é pros tonto verem e bateram palmas
-#
+#isso aqui é pros bobo vê e bate palma
+# 
 def teste():
-    return 10
+    return 10 
