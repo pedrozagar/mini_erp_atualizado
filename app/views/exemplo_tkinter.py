@@ -1,22 +1,23 @@
-import tkinter as tk #tk significa tkinter
-from tkinter import messagebox #se eu colocasse após o import o * (asterisco), eu importaria todas as bilbiotecas do tkinder e isso não precisa, pega apenas o que precisa
-
+import tkinter as tk
+from tkinter import messagebox
+ 
 class Janela_Exemplo:
-    def __init__(self):#aqui embaixo eu criei um construtor
+    def __init__(self):
         self.janela = tk.Tk()
-        janela = tk.Tk()#criei um objeto da classe aqui e chamei de janela porque eu quis. agora isto será um atributo dentro da Classe Janela_Exemplo
-        janela.title("MINI_ERP_ATUALIZADO")
-        janela.geometry("800x600")
-        janela.resizable(False, False) #isso é tanto na vertical como horizontal significa que não consegue puxar para maior ou menor a janela do quadro
+        self.janela.title("Meu primeiro sisteminha")
+        self.janela.geometry("800x600")
+        self.janela.resizable(False, False)
         self.configurar_janela()
-
+ 
     def configurar_janela(self):
-        lbl_titulo = tk.Label(
-        janela,
-        text = "EXEMPLO DE CADASTRO",
-        font = ("Arial", 12,"bold")
+       
+       
+        #ABA TITULO
+        self.lbl_titulo = tk.Label(
+            self.janela,
+            text = "EXEMPLO DE CADASTRO",
+            font= ("Arial",12,"bold")
         )
-
         self.lbl_titulo.grid(
             row = 0,
             column = 0,
@@ -24,130 +25,135 @@ class Janela_Exemplo:
             pady = 5,
             columnspan = 3
         )
-
-        #aqui no frm é FRAME. 
+       
+       
+        #ABA DADOS
         self.frm_dados = tk.Frame(
-            janela,
+            self.janela,
             padx = 10,
             pady = 5,
             bg = "lightblue"
         )
-
         self.frm_dados.grid(
             row = 1,
             column = 0
         )
-
+       
+       
+        #ABA BOTOES
         self.frm_botoes = tk.Frame(
-            janela,
+            self.janela,
             padx = 10,
             pady = 5,
-            bg = "darkblue",
+            bg = "#f1f2f6",
             borderwidth = 2,
             relief = "solid"
         )
-
         self.frm_botoes.grid(
             row = 2,
             column = 0
         )
-
+       
+       
+        #ABA NOME
         self.lbl_nome = tk.Label(
-            frm_dados,
+            self.frm_dados,
             text = "Nome:"
-        )#lbl_titulo ou lbl_nome
-
+        )
         self.lbl_nome.grid(
             row = 1,
             column = 0,
             padx = 10,
             pady = 5
         )
-
         self.txt_nome = tk.Entry(
-            frm_dados,
+            self.frm_dados,
             width = 40
         )
-
         self.txt_nome.grid(
             row = 1,
-            column = 1,
-            #padx = 10,
-            #pady = 5
+            column = 1
         )
-
+       
+       
+        #ABA IDADE
         self.lbl_idade = tk.Label(
-            frm_dados,
-            #janela, #aqui é onde ele vai abrir
+            self.frm_dados,
             text = "Idade"
-
-            #bg= "lightblue"
-            #padx = 10,
-            #pady = 5
         )
         self.lbl_idade.grid(
             row = 2,
             column = 0,
             padx = 10,
-            pady = 5
+            pady = 5    
         )
-
         self.txt_idade = tk.Entry(
-            frm_dados,
-            width = 40
+            self.frm_dados,
+            width= 40
         )
         self.txt_idade.grid(
             row = 2,
             column = 1
         )
-
+       
+       
+        #ABA BTN NOME
         self.btn_escrever_nome = tk.Button(
-            janela,
+            self.frm_botoes,
             text = "Printar o nome",
-            command = printar
+            command = self.printar
         )
-
+ 
         self.btn_escrever_nome.grid(
-            row = 1,
-            column = 2,
+            row = 3,
+            column = 0,
             padx = 10,
-            pady = 5,
+            pady = 5
         )
-
+       
+       
+        #ABA BTN IDADE
         self.btn_avaliar_idade = tk.Button(
-            janela,
+            self.frm_botoes,
             text = "Avaliar idade",
-            command = avaliar_idade
+            command = self.avaliar_idade
         )
-
         self.btn_avaliar_idade.grid(
-            row = 2,
-            column = 2
+            row = 3,
+            column = 1
         )
-
-#aqui vou criar uma função:
-def avaliar_idade():
-    if txt_idade.get() == "":
-        messagebox.showerror(
+       
+       
+        #ABA PRINT NOME
+    def printar(self):
+        print(self.txt_nome.get())
+       
+       
+        #ABA AVALIAR IDADE
+    def avaliar_idade(self):
+        if self.txt_idade.get() == "":
+            messagebox.showerror(
+                "Sisteminha",
+                "Tu só pode estar de sacanagem!"
+            )
+            return    
+        idade = int(self.txt_idade.get())
+        if idade >= 18:
+            messagebox.showinfo(
+                "Sisteminha",
+                "Com " + str(idade) + " você é bem vindo"
+            )
+            return
+        messagebox.showwarning(
             "Sisteminha",
-            "Tu so pode estar de sacanagem...."
+            "Fedelho!!!!"
         )
         return
-    idade = int(txt_idade.get())
-    if idade >= 18:
-        messagebox.showinfo(
-            "sisteminha",
-            "Com " + str(idade) + " voce e bem vindo"
-        )
-        return
-    messagebox.showwarning(
-        "Sisteminha",
-        "Fedelho!!!"
-    )
-    return
-
+   
+    #ABA INICIAR
     def iniciar(self):
         self.janela.mainloop()
-
+ 
+#METODO CHAMAR
 janelinha = Janela_Exemplo()
 janelinha.iniciar()
